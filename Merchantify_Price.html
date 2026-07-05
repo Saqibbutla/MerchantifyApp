@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchantify - Pricing | Choose Your Plan</title>
+    
+    <meta name="description" content="Choose the perfect plan for your business. Start free, scale as you grow. Simple, transparent pricing for inventory and accounts management.">
+    <meta name="keywords" content="pricing, inventory pricing, accounting pricing, merchant plans">
+    <meta name="author" content="Merchantify">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="icon" type="image/png" href="Logo Folder/logo favicon1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+            color: #1a1a2e;
+        }
+
+        :root {
+            --primary-color: #056dff;
+            --primary-dark: #0555cc;
+            --secondary-color: #092319;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --popular-badge: #ff7675;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(5, 109, 255, 0.25);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(5, 109, 255, 0.4);
+        }
+
+        /* Billing Toggle */
+        .billing-toggle {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .toggle-switch {
+            display: inline-flex;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .toggle-option {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .toggle-option.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .save-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        /* Pricing Header */
+        .pricing-header {
+            text-align: center;
+            padding: 4rem 1rem 1rem;
+        }
+
+        .pricing-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #092319;
+            font-weight: 800;
+        }
+
+        .pricing-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Claymorphic 3D Pricing Cards */
+        .pricing-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: #fdfdfd;
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.9), 
+                inset 0 -4px 10px rgba(0, 0, 0, 0.03),
+                10px 10px 30px rgba(166, 180, 200, 0.3),
+                -10px -10px 30px rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Unique Soft Background Highlights matching the render mockup */
+        .pricing-card.free-card { background: linear-gradient(135deg, #f3fdf6 0%, #ffffff 100%); }
+        .pricing-card.onsite-card { background: linear-gradient(135deg, #f2f8fe 0%, #ffffff 100%); }
+        .pricing-card.fullsuite-card { background: linear-gradient(135deg, #f9f5fc 0%, #ffffff 100%); }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.9), 
+                15px 20px 40px rgba(166, 180, 200, 0.45);
+        }
+
+        /* 3D Ribbon Wrap effect */
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 25px;
+            background: var(--popular-badge);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 12px 12px 12px 0px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 2px 4px 10px rgba(255, 118, 117, 0.4);
+        }
+
+        /* Extruded Recessed 3D Icon Container */
+        .plan-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .free-card .plan-icon { 
+            background: #e6f6ec; 
+            color: #4cd137; 
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.06), inset -3px -3px 6px rgba(255,255,255,0.9);
+        }
+        .onsite-card .plan-icon { 
+            background: #e3f2fd; 
+            color: #0097e6; 
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.06), inset -3px -3px 6px rgba(255,255,255,0.9);
+        }
+        .fullsuite-card .plan-icon { 
+            background: #f3e5f5; 
+            color: #8c14fc; 
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.06), inset -3px -3px 6px rgba(255,255,255,0.9);
+        }
+
+        .pricing-card:hover .plan-icon {
+            transform: scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .plan-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            min-height: 48px;
+        }
+
+        .price {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .price-amount {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .yearly-price {
+            display: none;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            width: 100%;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn-plan {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            border: none;
+        }
+
+        .btn-primary-plan {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 6px 16px rgba(5, 109, 255, 0.25);
+        }
+
+        .btn-primary-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(5, 109, 255, 0.4);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: auto;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            color: #475569;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li i {
+            font-size: 0.95rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .features-list li .fa-check { color: #10b981; }
+        .features-list li .fa-times { color: #cbd5e1; }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--white);
+            padding: 4rem 5%;
+            margin: 4rem auto;
+            max-width: 1200px;
+            border-radius: 32px;
+            box-shadow: 10px 10px 30px rgba(166, 180, 200, 0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 800px;
+        }
+
+        .comparison-table th {
+            padding: 1.2rem;
+            text-align: center;
+            background: #f8fafc;
+            font-weight: 700;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table th:first-child { text-align: left; }
+
+        .comparison-table td {
+            padding: 1.1rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            color: #475569;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: #fafafa;
+        }
+
+        .section-header td {
+            background: #f1f5f9 !important;
+            font-weight: 800 !important;
+            color: #1e293b;
+            font-size: 1rem;
+            text-align: left;
+            padding: 1rem 1.2rem;
+        }
+
+        .included { color: #10b981; font-weight: 600; }
+        .excluded { color: #94a3b8; }
+
+        .plan-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .plan-badge.free { background: #e6f6ec; color: #2ecc71; }
+        .plan-badge.onsite { background: #e3f2fd; color: #0097e6; }
+        .plan-badge.fullsuite { background: #f3e5f5; color: #8c14fc; }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 850px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border-color: #cbd5e1;
+        }
+
+        .faq-question {
+            padding: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #1e293b;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            padding: 0 1.4rem 1.4rem;
+            color: #475569;
+            display: none;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .faq-answer.show { display: block; }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            padding: 5rem 5% 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 1.4rem;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+
+        .footer-col ul li a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 4px;
+        }
+
+        .footer-brand-social {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-logo-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-left img {
+            height: 60px;
+            width: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-icons a {
+            width: 44px;
+            height: 44px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-bottom-left a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-left a:hover { color: var(--primary-color); }
+        .footer-bottom-left span { color: var(--border-color); margin: 0 0.6rem; }
+        .footer-bottom-right p { color: var(--text-light); font-size: 0.85rem; }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            .pricing-card.fullsuite-card {
+                grid-column: span 2;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 85px; left: 0; right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2.5rem;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+                gap: 1.5rem;
+            }
+            .nav-links.active { display: flex; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.fullsuite-card { grid-column: span 1; }
+            .pricing-header h1 { font-size: 2.2rem; }
+            .footer-brand-social, .footer-bottom-links {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="Index.html">Home</a>
+            <a href="Merchantify_Price.html" class="active">Pricing</a>
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn-outline" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Free Trial Version</button>
+        </div>
+    </nav>
+
+    <div class="pricing-header" data-aos="fade-down">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the perfect plan for your business needs. Start free, scale as you grow.</p>
+    </div>
+
+    <div class="billing-toggle" data-aos="fade-up">
+        <div class="toggle-switch">
+            <span class="toggle-option active" onclick="setBilling('monthly')">Monthly</span>
+            <span class="toggle-option" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save 30%</span></span>
+        </div>
+    </div>
+
+    <div class="pricing-container">
+        <div class="pricing-grid">
+            
+            <div class="pricing-card free-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="plan-icon"><i class="fas fa-rocket"></i></div>
+                <div class="plan-name">Starter</div>
+                <div class="plan-description">Perfect for getting started with basic operational tracking features.</div>
+                <div class="price">
+                    <span class="price-amount monthly-price">$0</span>
+                    <span class="price-amount yearly-price">$0</span>
+                    <span class="price-period">/month</span>
+                </div>
+                <button class="btn-plan btn-primary-plan" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Get Started Free →</button>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> 1 User</li>
+                    <li><i class="fas fa-times"></i> Multiple Role & Permission</li>
+                    <li><i class="fas fa-times"></i> App integrations</li>
+                    <li><i class="fas fa-check"></i> 1 inventory location</li>
+                    <li><i class="fas fa-check"></i> 50 purchase orders</li>
+                    <li><i class="fas fa-check"></i> 50 sale orders</li>
+                    <li><i class="fas fa-check"></i> 50 payment vouchers</li>
+                    <li><i class="fas fa-times"></i> Agent-wise sale stats</li>
+                    <li><i class="fas fa-times"></i> Agent-wise credit limits</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card onsite-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="popular-badge">⭐ Most Popular</div>
+                <div class="plan-icon"><i class="fas fa-building"></i></div>
+                <div class="plan-name">Standard</div>
+                <div class="plan-description">Best for growing local businesses requiring core system scale control.</div>
+                <div class="price">
+                    <span class="price-amount monthly-price">$49</span>
+                    <span class="price-amount yearly-price">$34</span>
+                    <span class="price-period">/month</span>
+                    <div class="yearly-price">billed yearly ($408/year)</div>
+                </div>
+                <button class="btn-plan btn-primary-plan" onclick="window.open('YOUR_TRIAL_URL', '_blank')">Start Free Trial →</button>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Multi Users</li>
+                    <li><i class="fas fa-check"></i> Multiple Role & Permission</li>
+                    <li><i class="fas fa-times"></i> App integrations</li>
+                    <li><i class="fas fa-check"></i> 1 inventory location</li>
+                    <li><i class="fas fa-check"></i> Unlimited purchase orders</li>
+                    <li><i class="fas fa-check"></i> Unlimited sale orders</li>
+                    <li><i class="fas fa-check"></i> Unlimited payment vouchers</li>
+                    <li><i class="fas fa-check"></i> Advance format reporting</li>
+                    <li><i class="fas fa-times"></i> Agent-wise sale stats</li>
+                    <li><i class="fas fa-times"></i> Agent-wise credit limits</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card fullsuite-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="plan-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="plan-name">Premium</div>
+                <div class="plan-description">Complete enterprise solution for companies handling field agents & multiple warehouses.</div>
+                <div class="price">
+                    <span class="price-amount monthly-price">$79</span>
+                    <span class="price-amount yearly-price">$55</span>
+                    <span class="price-period">/month</span>
+                    <div class="yearly-price">billed yearly ($660/year)</div>
+                </div>
+                <button class="btn-plan btn-primary-plan" onclick="window.open('YOUR_TRIAL_URL', '_blank')">Start Free Trial →</button>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Multi Users</li>
+                    <li><i class="fas fa-check"></i> Multiple Role & Permission</li>
+                    <li><i class="fas fa-check"></i> Connected APIs & Integrations</li>
+                    <li><i class="fas fa-check"></i> Multiple Locations setup</li>
+                    <li><i class="fas fa-check"></i> Unlimited purchase orders</li>
+                    <li><i class="fas fa-check"></i> Unlimited sale orders</li>
+                    <li><i class="fas fa-check"></i> Unlimited payment vouchers</li>
+                    <li><i class="fas fa-check"></i> Advance format reporting</li>
+                    <li><i class="fas fa-check"></i> Agent-wise sale sale</li>
+                    <li><i class="fas fa-check"></i> Agent-wise credit limits</li>
+                </ul>
+            </div>
+        </div>
+
+                <div class="comparison-section" id="features" data-aos="fade-up">
+            <h2 class="comparison-title">Compare All Features</h2>
+            <div class="table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th><span class="plan-badge free">Starter</span></th>
+                            <th><span class="plan-badge onsite">Standard</span></th>
+                            <th><span class="plan-badge fullsuite">Premium</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Team & Access</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Team members</td>
+                            <td>1 User</td>
+                            <td>Multi Users</td>
+                            <td>Multi Users</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Custom Role Access</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                         <tr>
+                            <td class="feature-name">Permission view access</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Integrations</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Integrations</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Inventory Locations</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Inventory locations</td>
+                            <td>1 location</td>
+                            <td>1 location</td>
+							<td>Multiple Locations</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Product Management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Products</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Bulk Upload Product</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Product Rate Management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Rate Hierarchy & Track</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Procurement</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Purchase Order</td>
+                            <td>50 Orders</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">P-Return</td>
+                            <td>50 Returns</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Stock Management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Opening Stock</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Stock Adjustment</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Stock Transfer</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Parties Setup</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Group Customer</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Customer</td>
+                            <td>Unlimited</td>	
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Supplier</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Sales Channel</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Sale Order</td>
+                            <td>50 Orders</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">S-Return</td>
+                            <td>50 Returns</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Agent Management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Agent wise Sale</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Agent wise Credit</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">GST & Other Tax Compliance</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">GST & Tax Compliance</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Bank & Account Management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Bank & Account Management</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Chart of Account</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Standard 3 level Accounting</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Payments & Transaction</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Adjustment</td>
+                            <td>50 Vouchers</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Cash & Bank Voucher</td>
+                            <td>50 Vouchers</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Role Base Access Control</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Multiple Users Role Management</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Permissions</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Bulk Import & Download Options</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Configuration Data</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Transaction Data</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">24/7 Live Data Sync & Device Access</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Live Data Sync</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Multi Device Access</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Advance Format Reporting</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Advance Format Reporting</td>
+                            <td class="excluded">✕ Not included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Analytical Dashboards</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Analytical Dashboards</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Low Stock Alert & Credit Alerts</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Low Stock Alert</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Credit Alerts</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                        <tr class="section-header">
+                            <td colspan="4">Mobile App</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Mobile App Access</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                            <td class="included">✓ Included</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                <!-- FAQ Section -->
+        <div class="faq-section" id="faq" data-aos="fade-up">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    What's the difference between Starter, Standard and Premium?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <strong>Starter</strong> is free and perfect for small businesses just getting started with basic inventory tracking & Account Tracking with limited Orders. <strong>Standard</strong> is designed for growing businesses that need unlimited items and orders.Multi-user access. <strong>Premium</strong> includes everything in Standard plus external integrations, order management, sales team tracking with agent-wise features, Multi-location support, and mobile app access.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I upgrade from Starter to Standard or Premium?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! You can upgrade anytime directly from your dashboard. Your data will be preserved, and we'll help you migrate seamlessly to your new plan without any downtime.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Is there a contract or long-term commitment?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No long-term contracts! Monthly plans can be canceled anytime with no penalties. Yearly plans offer 30% savings and are also non-binding after the first year. You're always in control.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    What is Agent wise Sale and Credit tracking?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Agent wise tracking allows you to monitor each sales agent's performance individually - how much they've sold, collected, and their outstanding credit. This feature is only available in the Premium plan and helps you manage commission payouts and team performance effectively.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I use the software on multiple devices?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! All plans support multiple device access on desktop and web browsers plus real-time sync across all devices.
+                </div>
+            </div>
+        </div>
+    </div>
+            
+            <div class="footer-brand-social">
+                <div class="footer-logo-left">
+                    <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom-links">
+                <div class="footer-bottom-left">
+                    <a href="#">Privacy Policy</a><span>|</span><a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-bottom-right">
+                    <p>&copy; 2026 Merchantify Global Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init CSS Framework Animation Engine triggers
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if(answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                icon.className = 'fas fa-chevron-down';
+            } else {
+                answer.classList.add('show');
+                icon.className = 'fas fa-chevron-up';
+            }
+        }
+
+        function setBilling(mode) {
+            const options = document.querySelectorAll('.toggle-option');
+            options.forEach(opt => opt.classList.remove('active'));
+            
+            const monthlyPrices = document.querySelectorAll('.monthly-price');
+            const yearlyPrices = document.querySelectorAll('.yearly-price');
+            const yearlyLabels = document.querySelectorAll('.yearly-price + div');
+
+            if (mode === 'monthly') {
+                event.target.classList.add('active');
+                monthlyPrices.forEach(el => el.style.display = 'inline-block');
+                yearlyPrices.forEach(el => el.style.display = 'none');
+                yearlyLabels.forEach(el => el.style.display = 'none');
+            } else {
+                event.target.classList.add('active');
+                monthlyPrices.forEach(el => el.style.display = 'none');
+                yearlyPrices.forEach(el => el.style.display = 'inline-block');
+                yearlyLabels.forEach(el => el.style.display = 'block');
+            }
+        }
+    </script>
+</body>
+</html>

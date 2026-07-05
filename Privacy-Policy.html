@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Merchantify</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Merchantify Privacy Policy - Learn how we collect, use, and protect your personal information.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo Folder/logo favicon1.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #056dff;
+            --primary-dark: #0555cc;
+            --secondary-color: #092319;
+            --text-dark: #092319;
+            --text-light: #325860;
+            --bg-light: #f0f8f5;
+            --white: #ffffff;
+            --border-color: #e3e7e6;
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #e0e0e0;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Back to Top */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(5, 109, 255, 0.3);
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+            background: var(--primary-dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            flex: 0 0 auto;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex: 0 0 auto;
+            margin-left: auto;
+        }
+
+        .btn-login {
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(5, 109, 255, 0.3);
+        }
+
+        .btn-outline {
+            border: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(5, 109, 255, 0.25);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(5, 109, 255, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Privacy Hero */
+        .privacy-hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+            padding: 6rem 5% 4rem;
+            text-align: center;
+        }
+
+        .privacy-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-hero .last-updated {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        /* Privacy Content */
+        .privacy-content {
+            padding: 4rem 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .privacy-section h2 i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .privacy-section h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-section p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-section ul li {
+            color: var(--text-light);
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .privacy-section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* User Agreement Box */
+        .agreement-box {
+            background: linear-gradient(135deg, var(--bg-light), #ffffff);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .agreement-box h3 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .agreement-box ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .agreement-box ul li {
+            color: var(--text-light);
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .agreement-box ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(3px);
+            display: inline-block;
+        }
+
+        .footer-brand-social {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-left img {
+            height: 80px;
+            width: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-cta {
+            background: linear-gradient(135deg, #f8faff, #eef5ff);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(5, 109, 255, 0.08);
+        }
+
+        .footer-cta-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .footer-cta-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #056dff, #7c3aed);
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(5, 109, 255, 0.25);
+        }
+
+        .footer-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(5, 109, 255, 0.35);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-bottom-left a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-left a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom-left span {
+            color: var(--border-color);
+            margin: 0 0.5rem;
+        }
+
+        .footer-bottom-right p {
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .privacy-hero h1 {
+                font-size: 2.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .privacy-hero h1 {
+                font-size: 2rem;
+            }
+            .privacy-content {
+                padding: 2rem 1.5rem;
+            }
+            .privacy-section h2 {
+                font-size: 1.4rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-brand-social {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-bottom-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            .agreement-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Back to Top -->
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='Index.html'">
+            <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="Index.html">Home</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn-login" onclick="window.open('YOUR_LOGIN_URL', '_blank')">Log In</button>
+            <button class="btn-outline" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Download App</button>
+        </div>
+    </nav>
+
+    <!-- Privacy Hero -->
+    <section class="privacy-hero" data-aos="fade-down">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy matters to us. Learn how Merchantify collects, uses, and protects your personal information.</p>
+        <div class="last-updated">Effective Date: Upon user registration or subscription activation</div>
+    </section>
+
+    <!-- Privacy Content -->
+    <div class="privacy-content">
+        
+        <!-- Section 1: Data Ownership & Privacy -->
+        <div class="privacy-section" data-aos="fade-up">
+            <h2><i class="fas fa-lock"></i> Data Ownership & Privacy</h2>
+            <ul>
+                <li>All business data entered in Merchantify belongs to you (the customer).</li>
+                <li>Merchantify does not sell, share, or trade your data with any third party.</li>
+                <li>Data is only used for:
+                    <ul style="margin-top: 0.5rem; padding-left: 2rem;">
+                        <li>Secure storage and backup.</li>
+                        <li>Communication with you (support, updates, billing).</li>
+                        <li>Improving service features.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Data Storage & Security -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="50">
+            <h2><i class="fas fa-shield-alt"></i> Data Storage & Security</h2>
+            <ul>
+                <li>Your data is stored securely on cloud servers.</li>
+                <li>We use industry-standard practices to protect information, but no system is 100% secure.</li>
+                <li>Merchantify will not be responsible for losses caused by cyber-attacks, internet issues, or misuse of your credentials.</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: User Responsibilities -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="100">
+            <h2><i class="fas fa-user-shield"></i> User Responsibilities</h2>
+            <ul>
+                <li>You are responsible for keeping your login and password safe.</li>
+                <li>Any activity done under your account is considered authorized by you.</li>
+                <li>You must use the software only for legal business purposes.</li>
+            </ul>
+        </div>
+
+        <!-- Section 4: Subscription & Payments -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="150">
+            <h2><i class="fas fa-credit-card"></i> Subscription & Payments</h2>
+            <ul>
+                <li>Merchantify offers monthly & annual subscription plans.</li>
+                <li>All payments are non-refundable once the subscription period starts.</li>
+                <li>Payment methods: bank transfer,Checkout billing, Auto Merchant Billing or other approved methods.</li>
+                <li>Subscription will remain active until the chosen billing cycle ends.</li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Cancellation & Data Export -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="200">
+            <h2><i class="fas fa-file-export"></i> Cancellation & Data Export</h2>
+            <ul>
+                <li>You can cancel your subscription anytime, but no refunds will be issued for the remaining period.</li>
+                <li>After cancellation or expiry, your data will remain stored for 30 days.</li>
+                <li>Within this period, you can request a data export (Excel/CSV/PDF). After 30 days, data may be permanently deleted.</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Service Availability -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="250">
+            <h2><i class="fas fa-cloud"></i> Service Availability</h2>
+            <ul>
+                <li>Merchantify is a cloud service and may occasionally face downtime due to:
+                    <ul style="margin-top: 0.5rem; padding-left: 2rem;">
+                        <li>Maintenance and upgrades.</li>
+                        <li>Third-party service failures (internet, payment gateway, email/SMS).</li>
+                    </ul>
+                </li>
+                <li>Merchantify will not be responsible for business losses during downtime.</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: Third-Party Services -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="300">
+            <h2><i class="fas fa-plug"></i> Third-Party Services</h2>
+            <ul>
+                <li>Merchantify may integrate with third-party tools (email, SMS, payment gateways).</li>
+                <li>We are not responsible for service failures, errors, or downtime caused by these third parties.</li>
+            </ul>
+        </div>
+
+        <!-- Section 8: Limitation of Liability -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="350">
+            <h2><i class="fas fa-gavel"></i> Limitation of Liability</h2>
+            <ul>
+                <li>Merchantify is a business management tool, not a financial or tax advisor.</li>
+                <li>We are not responsible for:
+                    <ul style="margin-top: 0.5rem; padding-left: 2rem;">
+                        <li>Errors in entries made by users.</li>
+                        <li>Non-compliance with tax laws if users fail to apply correct rates.</li>
+                        <li>Any indirect, incidental, or business losses.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 9: Governing Law -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="400">
+            <h2><i class="fas fa-balance-scale"></i> Governing Law</h2>
+            <ul>
+                <li>Any disputes will be settled through mutual negotiation or arbitration in a mutually agreed neutral location.</li>
+            </ul>
+        </div>
+
+        <!-- Section 10: Updates to Policy -->
+        <div class="privacy-section" data-aos="fade-up" data-aos-delay="450">
+            <h2><i class="fas fa-bell"></i> Updates to Policy</h2>
+            <ul>
+                <li>Merchantify may update these Terms & Privacy Policy from time to time.</li>
+                <li>Continued use of the software means you accept the updated policy.</li>
+            </ul>
+        </div>
+
+        <!-- User Agreement -->
+        <div class="agreement-box" data-aos="fade-up" data-aos-delay="500">
+            <h3>📋 User Agreement</h3>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">By signing up or subscribing to Merchantify, you confirm that you:</p>
+            <ul>
+                <li>Have read and agreed to Merchantify's Terms of Service & Privacy Policy.</li>
+                <li>Understand that payments are non-refundable.</li>
+                <li>Take full responsibility for your account usage and entered data.</li>
+            </ul>
+        </div>
+
+    </div>
+
+            <div class="footer-brand-social" data-aos="fade-up" data-aos-delay="350">
+                <div class="footer-logo-left">
+                    <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo" style="height: 50px; width: auto;">
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/Merchantifyapp/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/Merchantifyapp" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://pk.linkedin.com/company/Merchantifyapp" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@Merchantifyapp" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-cta" data-aos="zoom-in" data-aos-delay="450">
+                <div class="footer-cta-content">
+                    <h3>Start your free trial today!</h3>
+                    <p>No credit card required.</p>
+                    <a href="#" class="footer-cta-btn" onclick="window.open('YOUR_CTA_URL_HERE', '_blank')">Get started →</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom-links" data-aos="fade-up" data-aos-delay="500">
+                
+                <div class="footer-bottom-right">
+                    <p>© 2026 Merchantify App. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 300);
+                }, 500);
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }
+        });
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('navLinks').classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (window.innerWidth <= 768 && navLinks && navLinks.classList.contains('active')) {
+                if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
