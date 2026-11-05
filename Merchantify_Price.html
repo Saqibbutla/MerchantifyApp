@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchantify - Pricing | Offline POS & Cloud ERP</title>
+    
+    <meta name="description" content="Choose the perfect plan for your business. Offline POS for $199 lifetime, or Cloud ERP with custom quoting for multi-location businesses. Start free, scale as you grow.">
+    
+    <link rel="icon" type="image/png" href="Logo Folder/logo favicon1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1a1a2e;
+        }
+
+        :root {
+            --primary-color: #056dff;
+            --primary-dark: #0555cc;
+            --secondary-color: #092319;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --popular-badge: #ff7675;
+            --cloud-color: #10b981;
+            --cloud-dark: #059669;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo img { height: 70px; width: auto; cursor: pointer; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+
+        /* Product Toggle Switcher */
+        .product-switcher {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            padding: 0 1rem;
+        }
+
+        .switcher-container {
+            display: inline-flex;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .switch-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(5, 109, 255, 0.3);
+        }
+
+        .switch-btn.inactive {
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .switch-btn.inactive:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .section-title h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-dark); }
+        .section-title p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+
+        /* --- RETAIL OFFLINE POS SECTION --- */
+        .retail-pricing-section { padding: 2rem 5% 5rem; display: none; }
+        
+        .retail-card {
+            background: var(--white); max-width: 800px; margin: 0 auto;
+            border-radius: 32px; padding: 4rem; border: 2px solid var(--primary-color);
+            box-shadow: 0 20px 60px rgba(5, 109, 255, 0.1);
+            display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;
+        }
+
+        .retail-card-left { flex: 1; min-width: 250px; }
+        .retail-card-right { flex: 1; min-width: 250px; }
+
+        .retail-price { font-size: 4rem; font-weight: 800; color: var(--text-dark); line-height: 1; }
+        .retail-price span { font-size: 1.2rem; color: var(--text-light); font-weight: 500; }
+        .retail-renewal { color: var(--primary-color); font-weight: 600; margin: 0.5rem 0 1.5rem; display: block; }
+        
+        .retail-features { list-style: none; margin-bottom: 2rem; }
+        .retail-features li { margin-bottom: 0.8rem; color: var(--text-dark); font-weight: 500; display: flex; gap: 10px; align-items: center; }
+        .retail-features li i { color: #10b981; }
+
+        .btn-retail {
+            background: var(--primary-color); color: white; text-decoration: none;
+            padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
+            display: block; text-align: center; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(5, 109, 255, 0.3);
+        }
+        .btn-retail:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        /* --- CLOUD ERP SECTION --- */
+        .cloud-pricing-section { padding: 2rem 5% 5rem; }
+
+        .pricing-container { max-width: 1300px; margin: 0 auto; }
+
+        /* Quote Card */
+        .quote-card {
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+            max-width: 900px; margin: 0 auto 4rem;
+            border-radius: 32px; padding: 3.5rem 3rem;
+            border: 2px solid var(--cloud-color);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+            text-align: center;
+        }
+
+        .quote-icon {
+            width: 70px; height: 70px; border-radius: 20px;
+            background: #e6f6ec; color: var(--cloud-color);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; margin: 0 auto 1.5rem;
+        }
+
+        .quote-card h2 {
+            font-size: 2.2rem; font-weight: 800; color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .quote-card > p {
+            color: var(--text-light); font-size: 1.05rem; line-height: 1.7;
+            max-width: 600px; margin: 0 auto 2.5rem;
+        }
+
+        .quote-model {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+            max-width: 650px; margin: 0 auto 2.5rem; text-align: left;
+        }
+
+        .quote-model-item {
+            background: var(--white); border-radius: 16px; padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .quote-model-item .model-label {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
+            color: var(--cloud-color); text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-model-item h4 {
+            font-size: 1.2rem; color: var(--text-dark); margin-bottom: 0.4rem;
+            font-weight: 800;
+        }
+
+        .quote-model-item p {
+            color: var(--text-light); font-size: 0.9rem; line-height: 1.5;
+        }
+
+        .quote-includes {
+            list-style: none; display: flex; flex-wrap: wrap;
+            justify-content: center; gap: 0.6rem 1.5rem;
+            margin: 0 auto 2.5rem; max-width: 700px;
+        }
+
+        .quote-includes li {
+            color: var(--text-dark); font-weight: 500; font-size: 0.95rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .quote-includes li i { color: var(--cloud-color); }
+
+        .btn-quote {
+            background: var(--cloud-color); color: white; text-decoration: none;
+            padding: 1.1rem 3rem; border-radius: 50px; font-weight: 700;
+            display: inline-block; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            font-size: 1.05rem;
+        }
+        .btn-quote:hover { background: var(--cloud-dark); transform: translateY(-3px); }
+
+        .quote-note {
+            margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-light);
+        }
+
+        /* Comparison Tables */
+        .comparison-section { background: var(--white); padding: 4rem 5%; margin: 4rem auto; max-width: 1200px; border-radius: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--border-color); }
+        .comparison-title { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; color: var(--text-dark); font-weight: 800; }
+        .table-container { overflow-x: auto; border-radius: 16px; border: 1px solid var(--border-color); }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 800px; }
+        th { padding: 1.2rem; text-align: center; background: #f8fafc; font-weight: 700; color: var(--text-dark); border-bottom: 2px solid var(--border-color); }
+        th:first-child { text-align: left; }
+        td { padding: 1.1rem 1rem; text-align: center; border-bottom: 1px solid var(--border-color); color: var(--text-light); }
+        td:first-child { text-align: left; font-weight: 600; color: var(--text-dark); background: #fafafa; }
+        
+        .section-header td { background: #f1f5f9 !important; font-weight: 800 !important; color: #1e293b; font-size: 1rem; text-align: left; padding: 1rem 1.2rem; }
+        .included { color: var(--cloud-color); font-weight: 600; }
+        .excluded { color: #94a3b8; }
+
+        /* FAQ Section */
+        .faq-section { max-width: 850px; margin: 5rem auto; padding: 0 1.5rem; }
+        .faq-title { text-align: center; font-size: 2.2rem; margin-bottom: 2.5rem; color: var(--text-dark); font-weight: 800; }
+        .faq-item { background: var(--white); border-radius: 16px; margin-bottom: 1.2rem; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.01); }
+        .faq-question { padding: 1.4rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-dark); font-size: 1.05rem; }
+        .faq-answer { padding: 0 1.4rem 1.4rem; color: var(--text-light); display: none; line-height: 1.7; font-size: 0.95rem; }
+        .faq-answer.show { display: block; }
+
+        /* Footer */
+        .footer { background: #ffffff; padding: 3rem 5%; border-top: 1px solid var(--border-color); text-align: center; }
+        .footer p { color: var(--text-light); font-size: 0.9rem; }
+        .mobile-menu-btn { display: none; font-size: 1.6rem; cursor: pointer; color: var(--text-dark); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { display: none; position: absolute; top: 85px; left: 0; right: 0; background: white; flex-direction: column; padding: 2.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.08); gap: 1.5rem; }
+            .nav-links.active { display: flex; }
+            .section-title h1 { font-size: 2rem; }
+            .retail-card { padding: 2rem; flex-direction: column; text-align: center; }
+            .retail-features li { justify-content: center; }
+            .switch-btn { padding: 0.8rem 1.2rem; font-size: 1rem; }
+            .quote-card { padding: 2.5rem 1.5rem; }
+            .quote-model { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="Merchantify_Price.html" class="active">Pricing</a>
+            <a href="#competitor">Compare</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn-outline" style="background: var(--primary-color); color: white; border: none; padding: 0.7rem 1.8rem; border-radius: 50px; font-weight: 600; cursor: pointer;" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Start Free</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="section-title" data-aos="fade-down" style="margin-top: 4rem;">
+        <h1>Choose Your Software</h1>
+        <p>We offer two distinct products. Select the one that fits your business model.</p>
+    </div>
+
+    <!-- Product Switcher -->
+    <div class="product-switcher" data-aos="fade-up">
+        <div class="switcher-container">
+            <button class="switch-btn active" id="btn-retail" onclick="switchProduct('retail')">
+                <i class="fas fa-laptop"></i> Retail Pro (Offline)
+            </button>
+            <button class="switch-btn inactive" id="btn-cloud" onclick="switchProduct('cloud')">
+                <i class="fas fa-cloud"></i> Cloud ERP (Online)
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         RETAIL PRO (OFFLINE POS) SECTION
+         ========================================== -->
+    <div id="section-retail" class="retail-pricing-section" style="display: block;" data-aos="fade-up">
+        <div class="retail-card">
+            <div class="retail-card-left">
+                <div class="retail-price">$199<span> / one-time</span></div>
+                <span class="retail-renewal">+ $69/year renewal Fee</span>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.6;">Lifetime license for a single laptop. No monthly fees. No internet required. Own your data forever.</p>
+                <a href="retail-pos.html" class="btn-retail">View Full Details & Features</a>
+            </div>
+            <div class="retail-card-right">
+                <ul class="retail-features">
+                    <li><i class="fas fa-check-circle"></i> 1 Terminal / 1 Laptop</li>
+                    <li><i class="fas fa-check-circle"></i> 100% Offline Billing</li>
+                    <li><i class="fas fa-check-circle"></i> Barcode & Receipt Printing</li>
+                    <li><i class="fas fa-check-circle"></i> Customer Ledgers & Inventory</li>
+                    <li><i class="fas fa-check-circle"></i> Owner Mobile Dashboard</li>
+                    <li><i class="fas fa-check-circle"></i> Plug & Play with Any Hardware</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         CLOUD ERP SECTION (QUOTE-BASED)
+         ========================================== -->
+    <div id="section-cloud" class="cloud-pricing-section" style="display: none;">
+        
+        <div class="section-title" data-aos="fade-up">
+            <h1>Cloud ERP Pricing</h1>
+            <p>For multi-location businesses, warehouses, and growing teams. Priced to fit your scale.</p>
+        </div>
+
+        <div class="pricing-container">
+
+            <!-- QUOTE CARD -->
+            <div class="quote-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="quote-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h2>Custom Quote for Your Business</h2>
+                <p>Cloud ERP is priced individually because every distributor, warehouse, and multi-branch operation has different needs. Tell us your setup and we'll send a tailored quote.</p>
+
+                <div class="quote-model">
+                    <div class="quote-model-item">
+                        <div class="model-label">Part 1</div>
+                        <h4>One-Time License Fee</h4>
+                        <p>A one-time implementation and license fee based on your branches, users, and modules.</p>
+                    </div>
+                    <div class="quote-model-item">
+                        <div class="model-label">Part 2</div>
+                        <h4>Monthly Cloud Fee</h4>
+                        <p>A monthly fee covering cloud hosting, server resources, backups, and ongoing support.</p>
+                    </div>
+                </div>
+
+                <ul class="quote-includes">
+                    <li><i class="fas fa-check-circle"></i> Multi-Branch & Multi-Warehouse</li>
+                    <li><i class="fas fa-check-circle"></i> VAT / Tax Ready</li>
+                    <li><i class="fas fa-check-circle"></i> Offline Order Booking App</li>
+                    <li><i class="fas fa-check-circle"></i> Role-Based Permissions</li>
+                    <li><i class="fas fa-check-circle"></i> Advanced Reports & Analytics</li>
+                    <li><i class="fas fa-check-circle"></i> API Access for Integrations</li>
+                </ul>
+
+                <a href="YOUR_QUOTE_FORM_URL" class="btn-quote">Request a Quote →</a>
+                <p class="quote-note">We reply within 1 business day with a tailored proposal.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- COMPETITOR COMPARISON -->
+    <div class="comparison-section" id="competitor" data-aos="fade-up" style="margin-top: 0;">
+        <h2 class="comparison-title">Why Switch from Square or Lightspeed?</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cost Comparison</th>
+                        <th>Square / Lightspeed</th>
+                        <th style="color: var(--primary-color);">Merchantify Retail Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Upfront Hardware Cost</td>
+                        <td>$300 - $800</td>
+                        <td style="color: var(--primary-color); font-weight: 600;">$0 (Use any hardware)</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Software Fee</td>
+                        <td>$60 - $100 / month</td>
+                        <td style="color: var(--primary-color); font-weight: 600;">$0 (Lifetime License)</td>
+                    </tr>
+                    <tr>
+                        <td>Hidden Processing Fees</td>
+                        <td>2.6% - 2.9% per swipe</td>
+                        <td style="color: var(--primary-color); font-weight: 600;">Keep your own processor</td>
+                    </tr>
+                    <tr>
+                        <td>Year 1 Total Cost</td>
+                        <td style="font-weight: 700; color: #ef4444;">$1,000+</td>
+                        <td style="color: var(--primary-color); font-weight: 800;">$199 (One-time)</td>
+                    </tr>
+                    <tr>
+                        <td>Internet Required to Sell</td>
+                        <td>Yes (Limited Offline)</td>
+                        <td style="color: var(--primary-color); font-weight: 600;">Never</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <!-- FAQ Section -->
+    <div class="faq-section" id="faq" data-aos="fade-up">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What is the difference between Retail Pro and Cloud ERP?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <strong>Retail Pro</strong> is an offline, single-terminal POS. It costs $199 once and works without internet. <strong>Cloud ERP</strong> is a custom-quoted solution for multi-location businesses that need live data sync, multi-branch support, and e-commerce integrations.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Why is Cloud ERP not priced on the website?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Cloud ERP is tailored to each business. The number of branches, users, warehouses, and modules changes the scope — so we quote individually. You get a one-time license fee plus a monthly cloud fee that matches exactly what you need. No paying for features you don't use.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Is there a contract for Cloud ERP?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                No long-term lock-in. The one-time fee covers setup and licensing. The monthly cloud fee can be canceled anytime — your data is exportable and stays yours.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What hardware do I need for Retail Pro?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Any Windows laptop, a standard USB barcode scanner, and an ESC/POS thermal receipt printer. We do not lock you into buying special hardware—you can use whatever you already have in your shop.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Can I use the Cloud ERP on multiple devices?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Yes! Cloud ERP supports multiple device access on desktop, web browsers, and mobile phones, with real-time data sync across all your locations.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Merchantify App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Toggle Product Switch
+        function switchProduct(product) {
+            const btnRetail = document.getElementById('btn-retail');
+            const btnCloud = document.getElementById('btn-cloud');
+            const secRetail = document.getElementById('section-retail');
+            const secCloud = document.getElementById('section-cloud');
+
+            if (product === 'retail') {
+                btnRetail.classList.add('active');
+                btnRetail.classList.remove('inactive');
+                btnCloud.classList.remove('active');
+                btnCloud.classList.add('inactive');
+                
+                secRetail.style.display = 'block';
+                secCloud.style.display = 'none';
+            } else {
+                btnCloud.classList.add('active');
+                btnCloud.classList.remove('inactive');
+                btnRetail.classList.remove('active');
+                btnRetail.classList.add('inactive');
+                
+                secCloud.style.display = 'block';
+                secRetail.style.display = 'none';
+            }
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if(answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                icon.className = 'fas fa-chevron-down';
+            } else {
+                answer.classList.add('show');
+                icon.className = 'fas fa-chevron-up';
+            }
+        }
+    </script>
+</body>
+</html>

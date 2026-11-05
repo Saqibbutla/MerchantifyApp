@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchantify Cloud ERP - Real-Time Business Management</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cloud-based ERP for multi-location businesses. Real-time inventory sync, e-commerce integration, and live analytics from anywhere.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo Folder/logo favicon1.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #10b981; /* Emerald Green for Cloud ERP */
+            --primary-dark: #059669;
+            --secondary-color: #092319;
+            --text-dark: #092319;
+            --text-light: #325860;
+            --bg-light: #f0fdf4;
+            --white: #ffffff;
+            --border-color: #e3e7e6;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo img { height: 70px; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn {
+            text-decoration: none; color: var(--text-light); font-weight: 500;
+            cursor: pointer; display: flex; align-items: center; gap: 5px;
+        }
+        .dropdown .dropbtn:hover { color: var(--primary-color); }
+        .dropdown-content {
+            display: none; position: absolute; background-color: #ffffff;
+            min-width: 220px; box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.1);
+            border-radius: 12px; z-index: 1001; top: 100%; left: 0; padding: 0.5rem 0;
+        }
+        .dropdown-content a {
+            color: var(--text-dark); padding: 12px 20px; display: block; font-size: 0.95rem;
+        }
+        .dropdown-content a:hover { background-color: var(--bg-light); color: var(--primary-color); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-buttons { display: flex; gap: 0.8rem; }
+        .btn-login {
+            border: 2px solid var(--primary-color); background: transparent;
+            padding: 0.7rem 1.8rem; border-radius: 50px; color: var(--primary-color);
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-login:hover { background: var(--primary-color); color: white; }
+        .btn-outline {
+            border: none; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 0.7rem 1.8rem; border-radius: 50px; color: white;
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-outline:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); }
+
+        /* --- TOP HEADER IMAGE --- */
+        .top-header-image {
+            width: 100%;
+            display: block;
+            background: var(--bg-light);
+        }
+        .top-header-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- HERO CONTENT SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+            padding: 4rem 5% 6rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-badge {
+            background: rgba(16, 185, 129, 0.1); color: var(--primary-color);
+            padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            display: inline-block; margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;
+            color: var(--text-dark); font-weight: 800;
+        }
+        .hero-content h1 span { color: var(--primary-color); }
+        .hero-content p {
+            font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;
+        }
+        
+        .hero-actions { display: flex; gap: 1rem; align-items: center; }
+        .btn-primary {
+            background: var(--primary-color); color: white; border: none;
+            padding: 1rem 2.5rem; font-size: 1.1rem; border-radius: 50px;
+            cursor: pointer; font-weight: 600; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        /* --- FEATURES GRID --- */
+        .section-padding { padding: 5rem 5%; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-dark); }
+        .section-header p { font-size: 1.1rem; color: var(--text-light); }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .feature-card {
+            background: var(--white); padding: 2.5rem; border-radius: 24px;
+            border: 1px solid var(--border-color); transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1); border-color: var(--primary-color);
+        }
+        .feature-icon {
+            width: 60px; height: 60px; background: var(--bg-light); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--primary-color); margin-bottom: 1.5rem;
+        }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--text-dark); }
+        .feature-card p { color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- COMPARISON TABLE --- */
+        .comparison-section { background: var(--bg-light); }
+        .table-container {
+            background: white; border-radius: 24px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1.2rem 2rem; border-bottom: 1px solid var(--border-color); }
+        th { background: #f0fdf4; font-weight: 700; color: var(--text-dark); font-size: 1.1rem; }
+        td { color: var(--text-light); font-size: 1rem; }
+        .highlight-col { background: rgba(16, 185, 129, 0.05); font-weight: 600; color: var(--primary-dark); }
+        .check-icon { color: #10b981; margin-right: 8px; }
+        .cross-icon { color: #ef4444; margin-right: 8px; }
+
+        /* --- QUOTE CARD (replaces tiered pricing) --- */
+        .quote-card {
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+            max-width: 900px; margin: 0 auto;
+            border-radius: 32px; padding: 3.5rem 3rem;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+            text-align: center;
+        }
+
+        .quote-icon {
+            width: 70px; height: 70px; border-radius: 20px;
+            background: #e6f6ec; color: var(--primary-color);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; margin: 0 auto 1.5rem;
+        }
+
+        .quote-card h3 {
+            font-size: 2rem; font-weight: 800; color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .quote-card > p {
+            color: var(--text-light); font-size: 1.05rem; line-height: 1.7;
+            max-width: 600px; margin: 0 auto 2.5rem;
+        }
+
+        .quote-model {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+            max-width: 650px; margin: 0 auto 2.5rem; text-align: left;
+        }
+
+        .quote-model-item {
+            background: var(--white); border-radius: 16px; padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .quote-model-item .model-label {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
+            color: var(--primary-color); text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-model-item h4 {
+            font-size: 1.2rem; color: var(--text-dark); margin-bottom: 0.4rem;
+            font-weight: 800;
+        }
+
+        .quote-model-item p {
+            color: var(--text-light); font-size: 0.9rem; line-height: 1.5;
+        }
+
+        .quote-includes {
+            list-style: none; display: flex; flex-wrap: wrap;
+            justify-content: center; gap: 0.6rem 1.5rem;
+            margin: 0 auto 2.5rem; max-width: 700px;
+        }
+
+        .quote-includes li {
+            color: var(--text-dark); font-weight: 500; font-size: 0.95rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .quote-includes li i { color: var(--primary-color); }
+
+        .btn-quote {
+            background: var(--primary-color); color: white; text-decoration: none;
+            padding: 1.1rem 3rem; border-radius: 50px; font-weight: 700;
+            display: inline-block; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            font-size: 1.05rem;
+        }
+        .btn-quote:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        .quote-note {
+            margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-light);
+        }
+
+        /* --- FOOTER --- */
+        .footer { background: #ffffff; padding: 3rem 5%; border-top: 1px solid var(--border-color); text-align: center; }
+        .footer p { color: var(--text-light); font-size: 0.9rem; }
+
+        /* Mobile */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 2rem; }
+            .hero-actions { justify-content: center; flex-direction: column; }
+            .nav-links { display: none; }
+            th, td { padding: 1rem; font-size: 0.9rem; }
+            .quote-card { padding: 2.5rem 1.5rem; }
+            .quote-model { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+        </div>
+        
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Products <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+                <div class="dropdown-content">
+                    <a href="retail_pos.html">Retail Pro (Offline POS)</a>
+                    <a href="Cloud_erp.html" style="color: var(--primary-color);">Cloud ERP Software</a>
+                </div>
+            </div>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="Merchantify_Aboutus.html">About Us</a>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-outline" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Start Free</button>
+        </div>
+    </nav>
+
+    <!-- TOP HEADER BANNER IMAGE -->
+    <div class="top-header-image" data-aos="fade-down" data-aos-duration="1000">
+        <img src="Web Banner/cloudbanner.webp" alt="Merchantify Cloud ERP Banner">
+    </div>
+
+    <!-- Hero Content Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <span class="hero-badge">☁️ CLOUD-BASED ERP</span>
+            <h1>Your Entire Business.<br><span>Synced in Real-Time.</span></h1>
+            <p>Manage multiple locations, warehouses, and online stores from one dashboard. Merchantify Cloud ERP gives you live inventory updates, automated accounting, and total control from anywhere in the world.</p>
+            <div class="hero-actions">
+                <a href="#pricing" class="btn-primary">Request a Quote →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Built for Growing Enterprises</h2>
+                <p>When you need to know exactly what is happening across your entire business, instantly.</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Multi-Location Sync</h3>
+                    <p>Sell in Store A, and the inventory updates in Store B, Warehouse C, and your online store instantly. No manual stock transfers.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>E-Commerce Integration</h3>
+                    <p>Seamlessly sync your online store (Shopify, WooCommerce) with your physical shops. One inventory pool, multiple sales channels.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Live Analytics Dashboard</h3>
+                    <p>See live sales, profit, and top-performing products across all branches. Make decisions based on real-time data, not yesterday's reports.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fas fa-users-cog"></i></div>
+                    <h3>Advanced User Roles</h3>
+                    <p>Create accounts for managers, cashiers, accountants, and warehouse staff. Restrict access to sensitive data based on their role.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Purchase & Supplier Management</h3>
+                    <p>Track purchase orders, manage supplier balances, and let the system automatically suggest what to reorder based on sales velocity.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Automated Cloud Backups</h3>
+                    <p>Your data is securely backed up in the cloud. If a laptop breaks or a fire happens, your business data is safe and can be restored instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="section-padding comparison-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Cloud ERP vs. Offline POS</h2>
+                <p>Which one is right for your business?</p>
+            </div>
+
+            <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Merchantify Retail (Offline)</th>
+                            <th class="highlight-col">Merchantify Cloud ERP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Best For</td>
+                            <td>Single-terminal shops</td>
+                            <td class="highlight-col">Multi-branch & growing businesses</td>
+                        </tr>
+                        <tr>
+                            <td>Internet Required</td>
+                            <td>No</td>
+                            <td class="highlight-col">Yes (for live sync)</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Location Sync</td>
+                            <td><i class="fas fa-times cross-icon"></i> No</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Yes (Real-time)</td>
+                        </tr>
+                        <tr>
+                            <td>E-Commerce Integration</td>
+                            <td><i class="fas fa-times cross-icon"></i> No</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing Model</td>
+                            <td>$199 One-time</td>
+                            <td class="highlight-col">Custom Quote (One-time + Monthly Cloud)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (UPDATED: Quote-based) -->
+    <section id="pricing" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Pricing Built Around Your Business</h2>
+                <p>Cloud ERP is tailored to your branches, users, and modules. Tell us your setup — we'll send a quote that fits.</p>
+            </div>
+
+            <div class="quote-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="quote-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Custom Quote for Your Business</h3>
+                <p>No two distributors are the same. Your quote reflects exactly what you need — nothing more, nothing less.</p>
+
+                <div class="quote-model">
+                    <div class="quote-model-item">
+                        <div class="model-label">Part 1</div>
+                        <h4>One-Time License Fee</h4>
+                        <p>A one-time implementation and license fee based on your branches, users, and modules.</p>
+                    </div>
+                    <div class="quote-model-item">
+                        <div class="model-label">Part 2</div>
+                        <h4>Monthly Cloud Fee</h4>
+                        <p>A monthly fee covering cloud hosting, server resources, backups, and ongoing support.</p>
+                    </div>
+                </div>
+
+                <ul class="quote-includes">
+                    <li><i class="fas fa-check-circle"></i> Multi-Branch & Multi-Warehouse</li>
+                    <li><i class="fas fa-check-circle"></i> VAT / Tax Ready</li>
+                    <li><i class="fas fa-check-circle"></i> Offline Order Booking App</li>
+                    <li><i class="fas fa-check-circle"></i> Role-Based Permissions</li>
+                    <li><i class="fas fa-check-circle"></i> Advanced Reports & Analytics</li>
+                    <li><i class="fas fa-check-circle"></i> API Access for Integrations</li>
+                </ul>
+
+                <a href="YOUR_QUOTE_FORM_URL" class="btn-quote">Request a Quote →</a>
+                <p class="quote-note">We reply within 1 business day with a tailored proposal.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up" data-aos-delay="400">
+                <p style="color: var(--text-light); font-size: 0.9rem;">All plans include live data sync, multi-device access, and VAT/GST compliance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Merchantify App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+    </script>
+</body>
+</html>

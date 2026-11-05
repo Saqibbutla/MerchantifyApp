@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchantify Retail Pro - Offline POS Software</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Offline Point of Sale software for single-terminal shops. $199 lifetime license. No monthly fees, no internet required. Works with any hardware.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo Folder/logo favicon1.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #056dff;
+            --primary-dark: #0555cc;
+            --secondary-color: #092319;
+            --text-dark: #092319;
+            --text-light: #325860;
+            --bg-light: #f0f8f5;
+            --white: #ffffff;
+            --border-color: #e3e7e6;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo img { height: 70px; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn {
+            text-decoration: none; color: var(--text-light); font-weight: 500;
+            cursor: pointer; display: flex; align-items: center; gap: 5px;
+        }
+        .dropdown .dropbtn:hover { color: var(--primary-color); }
+        .dropdown-content {
+            display: none; position: absolute; background-color: #ffffff;
+            min-width: 220px; box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.1);
+            border-radius: 12px; z-index: 1001; top: 100%; left: 0; padding: 0.5rem 0;
+        }
+        .dropdown-content a {
+            color: var(--text-dark); padding: 12px 20px; display: block; font-size: 0.95rem;
+        }
+        .dropdown-content a:hover { background-color: var(--bg-light); color: var(--primary-color); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-buttons { display: flex; gap: 0.8rem; }
+        .btn-login {
+            border: 2px solid var(--primary-color); background: transparent;
+            padding: 0.7rem 1.8rem; border-radius: 50px; color: var(--primary-color);
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-login:hover { background: var(--primary-color); color: white; }
+        .btn-outline {
+            border: none; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 0.7rem 1.8rem; border-radius: 50px; color: white;
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-outline:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(5, 109, 255, 0.4); }
+
+        /* --- NEW TOP HEADER IMAGE --- */
+        .top-header-image {
+            width: 100%;
+            display: block;
+            background: var(--bg-light); /* Just in case the image loads slowly */
+        }
+        .top-header-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- HERO CONTENT SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #f0f8f5 0%, #ffffff 100%);
+            padding: 4rem 5% 6rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-badge {
+            background: rgba(5, 109, 255, 0.1); color: var(--primary-color);
+            padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            display: inline-block; margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;
+            color: var(--text-dark); font-weight: 800;
+        }
+        .hero-content h1 span { color: var(--primary-color); }
+        .hero-content p {
+            font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;
+        }
+        
+        .hero-actions { display: flex; gap: 1rem; align-items: center; }
+        .btn-primary {
+            background: var(--primary-color); color: white; border: none;
+            padding: 1rem 2.5rem; font-size: 1.1rem; border-radius: 50px;
+            cursor: pointer; font-weight: 600; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(5, 109, 255, 0.3); transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
+        
+        .price-tag { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+        .price-tag span { font-size: 0.9rem; font-weight: 500; color: var(--text-light); }
+
+        /* --- FEATURES GRID --- */
+        .section-padding { padding: 5rem 5%; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-dark); }
+        .section-header p { font-size: 1.1rem; color: var(--text-light); }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .feature-card {
+            background: var(--white); padding: 2.5rem; border-radius: 24px;
+            border: 1px solid var(--border-color); transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--primary-color);
+        }
+        .feature-icon {
+            width: 60px; height: 60px; background: var(--bg-light); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--primary-color); margin-bottom: 1.5rem;
+        }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--text-dark); }
+        .feature-card p { color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- COMPARISON TABLE --- */
+        .comparison-section { background: var(--bg-light); }
+        .table-container {
+            background: white; border-radius: 24px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1.2rem 2rem; border-bottom: 1px solid var(--border-color); }
+        th { background: #f8faff; font-weight: 700; color: var(--text-dark); font-size: 1.1rem; }
+        td { color: var(--text-light); font-size: 1rem; }
+        .highlight-col { background: rgba(5, 109, 255, 0.03); font-weight: 600; color: var(--primary-color); }
+        .check-icon { color: #10b981; margin-right: 8px; }
+        .cross-icon { color: #ef4444; margin-right: 8px; }
+
+        /* --- PRICING SECTION --- */
+        .pricing-card {
+            background: white; max-width: 500px; margin: 0 auto;
+            border-radius: 32px; padding: 4rem 3rem; text-align: center;
+            box-shadow: 0 20px 60px rgba(5, 109, 255, 0.1); border: 2px solid var(--primary-color);
+        }
+        .pricing-card h3 { font-size: 1.5rem; color: var(--text-light); margin-bottom: 1rem; }
+        .pricing-card .price { font-size: 4rem; font-weight: 800; color: var(--text-dark); line-height: 1; margin-bottom: 0.5rem; }
+        .pricing-card .renewal { font-size: 1rem; color: var(--text-light); margin-bottom: 2rem; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 2.5rem; }
+        .pricing-features li { margin-bottom: 1rem; color: var(--text-dark); font-weight: 500; }
+        .pricing-features i { color: var(--primary-color); margin-right: 10px; }
+
+        /* --- FOOTER --- */
+        .footer { background: #ffffff; padding: 3rem 5%; border-top: 1px solid var(--border-color); text-align: center; }
+        .footer p { color: var(--text-light); font-size: 0.9rem; }
+
+        /* --- DESKTOP CAROUSEL (added for the Desktop App section) --- */
+        .desktop-carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .desktop-carousel-track {
+            display: flex;
+            gap: 25px;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .desktop-carousel-slide {
+            min-width: calc(100% / 2 - 15px);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .desktop-carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .desktop-carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .desktop-carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .desktop-carousel-btn.prev { left: 10px; }
+        .desktop-carousel-btn.next { right: 10px; }
+
+        .desktop-carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Mobile */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 2rem; }
+            .hero-actions { justify-content: center; flex-direction: column; }
+            .nav-links { display: none; }
+            th, td { padding: 1rem; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-carousel-slide { min-width: calc(100% / 1 - 10px); }
+        }
+
+        @media (max-width: 480px) {
+            .desktop-carousel-btn { width: 35px; height: 35px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <img src="Logo Folder/Merchantify.png" alt="Merchantify Logo">
+        </div>
+        
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Products <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+                <div class="dropdown-content">
+                    <a href="retail_pos.html" style="color: var(--primary-color);">Retail Pro (Offline POS)</a>
+                    <a href="Cloud_erp.html">Cloud ERP Software</a>
+                </div>
+            </div>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="Merchantify_Aboutus.html">About Us</a>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-outline" onclick="window.open('YOUR_SIGNUP_URL', '_blank')">Download Free Trial</button>
+        </div>
+    </nav>
+
+    <!-- NEW TOP HEADER BANNER IMAGE -->
+    <div class="top-header-image" data-aos="fade-down" data-aos-duration="1000">
+        <!-- Loading the Merchantifybanner from Web Banner folder -->
+        <img src="Web Banner/Merchantifybanner.png" alt="Merchantify Retail Pro Banner">
+    </div>
+
+    <!-- Hero Content Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <span class="hero-badge">💻 100% OFFLINE POS</span>
+            <h1>Your Shop. Your Data.<br><span>Your Rules.</span></h1>
+            <p>Stop paying monthly fees for cloud software you don't need. Merchantify Retail Pro is a lightning-fast, offline POS that installs on your laptop and works forever—even when the internet goes down.</p>
+            <div class="hero-actions">
+                <a href="#pricing" class="btn-primary">Get Lifetime Access →</a>
+                <div class="price-tag">$199 <span>one-time</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESKTOP APP - IMAGE CAROUSEL -->
+    <section id="WebApp" style="padding: 5rem 5%; background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-down">
+                <span style="background: rgba(5, 109, 255, 0.15); color: var(--primary-color); padding: 0.3rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px;">💻 DESKTOP APP</span>
+                <h2 style="font-size: 2.5rem; margin-top: 1rem; color: var(--text-dark);">
+                    Manage from <span style="color: #056dff;">Desktop App</span>
+                </h2>
+                <p style="color: var(--text-light); margin-top: 1rem; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Access your full dashboard on desktop with powerful reporting, analytics, and complete control.</p>
+            </div>
+
+            <div class="desktop-carousel-container">
+                <div class="desktop-carousel-track" id="desktopCarouselTrack">
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/2.webp" alt="Desktop Screen 1"></div>
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/Dashboard.webp" alt="Desktop Screen 2"></div>
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/Product.webp" alt="Desktop Screen 3"></div>
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/Barcode.webp" alt="Desktop Screen 4"></div>
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/Categories.webp" alt="Desktop Screen 5"></div>
+                    <div class="desktop-carousel-slide"><img src="Merchant Web ss/Customer.webp" alt="Desktop Screen 6"></div>
+					<div class="desktop-carousel-slide"><img src="Merchant Web ss/User.webp" alt="Desktop Screen 7"></div>
+			        <div class="desktop-carousel-slide"><img src="Merchant Web ss/RolePermission.webp" alt="Desktop Screen 8"></div>
+                </div>
+
+                <button class="desktop-carousel-btn prev" onclick="moveDesktopCarousel(-1)">❮</button>
+                <button class="desktop-carousel-btn next" onclick="moveDesktopCarousel(1)">❯</button>
+            </div>
+
+            <div class="desktop-carousel-dots" id="desktopCarouselDots"></div>
+        </div>
+    </section>
+
+    <!-- HOW MERCHANTIFY HELPS TO RETAILERS -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-down">
+                <span style="background: rgba(5, 109, 255, 0.1); color: var(--primary-color); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">HOW MERCHANTIFY HELPS TO RETAILERS</span>
+                <h2 style="font-size: 2rem; margin-top: 1rem; color: var(--text-dark);">
+                    Get started in <span style="color: #056dff;">3 simple steps</span>
+                </h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 6rem;">
+                <div data-aos="fade-right">
+                    <img src="Web Banner/Install.webp" alt="Install Software" style="width: 100%; border-radius: 20px;">
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <span style="background: rgba(5, 109, 255, 0.1); color: var(--primary-color); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">STEP 01</span>
+                    <h3 style="font-size: 1.8rem; margin-top: 1rem;"> Install on One Laptop<br> One Laptop. One Shop. Done.</h3>
+                    <p style="color: var(--text-light); margin-top: 1rem; line-height: 1.6;"> Install Merchantify on any Windows laptop. Plug in your scanner and printer. Start selling in 5 minutes. No cloud setup. No IT person. No monthly fee.</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 6rem;">
+                <div data-aos="fade-right" data-aos-delay="200">
+                    <span style="background: rgba(5, 109, 255, 0.1); color: var(--primary-color); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">STEP 02</span>
+                    <h3 style="font-size: 1.8rem; margin-top: 1rem;">Sell Offline. Always.<br>Works Without Internet. Always.</h3>
+                    <p style="color: var(--text-light); margin-top: 1rem; line-height: 1.6;">Power cut? Internet down? No problem. Merchantify keeps selling. Every sale saved locally. Every receipt printed. Every inventory count updated. No cloud needed. Ever.</p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="Web Banner/Ofline.webp" alt="Offline Software" style="width: 100%; border-radius: 20px;">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+                <div data-aos="fade-right">
+                    <img src="Web Banner/OwnerSummery.webp" alt="Onfield Solutions" style="width: 100%; border-radius: 20px;">
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <span style="background: rgba(5, 109, 255, 0.1); color: var(--primary-color); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">STEP 03</span>
+                    <h3 style="font-size: 1.8rem; margin-top: 1rem;">Check From Your Phone<br>Owner Dashboard in Your Pocket.</h3>
+                    <p style="color: var(--text-light); margin-top: 1rem; line-height: 1.6;">At day end, tap "Send Summary." Your sales, profit, expense, and top products appear on your phone. Check all your branches in one app. Summary only — transaction data stays in the shop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Built for the Real World</h2>
+                <p>Everything you need to run a single-terminal shop, without the cloud dependency.</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>Works Without Internet</h3>
+                    <p>Power cut? Wi-Fi down? Keep selling. Every sale saves locally and prints instantly. The internet is never required to bill a customer.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fas fa-plug"></i></div>
+                    <h3>Plug & Play Hardware</h3>
+                    <p>Use any standard USB barcode scanner, ESC/POS thermal printer, and cash drawer. No special proprietary hardware required.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h3>5-Minute Setup</h3>
+                    <p>Install on any Windows laptop. Enter your license key. Start selling immediately. No IT guy, no network configuration, no training manuals.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fas fa-file-excel"></i></div>
+                    <h3>Bulk Import & Export</h3>
+                    <p>Upload 10,000 products via Excel in seconds. Export your daily sales and ledgers to CSV or PDF for your accountant anytime.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Owner Mobile App</h3>
+                    <p>At closing time, push one button. The app shows your daily sales, expenses, and profit from any branch, right on your phone.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Total Data Ownership</h3>
+                    <p>Your data lives on your laptop's hard drive, not in our cloud. We can't deactivate your account or hold your data hostage. It's yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="section-padding comparison-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why Switch from Square or Toast?</h2>
+                <p>Because you shouldn't pay a monthly "tech tax" to ring up a sale.</p>
+            </div>
+
+            <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Cloud POS (Square/Toast)</th>
+                            <th class="highlight-col">Merchantify Retail Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Software Fee</td>
+                            <td>$60 - $100 / month</td>
+                            <td class="highlight-col">$0 (Forever)</td>
+                        </tr>
+                        <tr>
+                            <td>Internet Required to Sell</td>
+                            <td><i class="fas fa-times cross-icon"></i> Yes (limited offline)</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Never</td>
+                        </tr>
+                        <tr>
+                            <td>Hardware Lock-in</td>
+                            <td><i class="fas fa-times cross-icon"></i> Must buy their hardware</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Use any hardware</td>
+                        </tr>
+                        <tr>
+                            <td>Data Ownership</td>
+                            <td><i class="fas fa-times cross-icon"></i> Stored on their cloud</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Stays on your laptop</td>
+                        </tr>
+                        <tr>
+                            <td>Account Deactivation Risk</td>
+                            <td><i class="fas fa-times cross-icon"></i> High</td>
+                            <td class="highlight-col"><i class="fas fa-check check-icon"></i> Zero</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>One Fair Price. Own It Forever.</h2>
+                <p>No hidden processing fees. No per-transaction costs. No surprises.</p>
+            </div>
+
+            <div class="pricing-card" data-aos="zoom-in" data-aos-delay="200">
+                <h3>Retail Pro Lifetime License</h3>
+                <div class="price">$199</div>
+                <div class="renewal">+ $69/year optional renewal</div>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> 1 Terminal / 1 Laptop Installation</li>
+                    <li><i class="fas fa-check-circle"></i> 100% Offline Billing & Inventory</li>
+                    <li><i class="fas fa-check-circle"></i> Barcode Scanner & Printer Support</li>
+                    <li><i class="fas fa-check-circle"></i> Customer Ledgers & Expense Tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Owner Dashboard Mobile App</li>
+                    <li><i class="fas fa-check-circle"></i> 14-Day Free Trial (No Credit Card)</li>
+                </ul>
+
+                <a href="YOUR_PADDLE_OR_STRIPE_LINK" class="btn-primary" style="width: 100%; display: block;">Start 14-Day Free Trial</a>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">No credit card required to start.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Merchantify App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // DESKTOP CAROUSEL JAVASCRIPT
+        const desktopTrack = document.getElementById('desktopCarouselTrack');
+        const desktopSlides = desktopTrack.querySelectorAll('.desktop-carousel-slide');
+        const desktopDotsContainer = document.getElementById('desktopCarouselDots');
+        let desktopCurrentIndex = 0;
+        let desktopSlidesToShow = 2;
+        let desktopTotalSlides = desktopSlides.length;
+        let desktopAutoPlayInterval;
+        let desktopIsTransitioning = false;
+
+        function getDesktopSlidesToShow() {
+            if (window.innerWidth <= 768) return 1;
+            return 2;
+        }
+
+        function updateDesktopSlidesToShow() {
+            desktopSlidesToShow = getDesktopSlidesToShow();
+            const slideWidth = 100 / desktopSlidesToShow;
+            desktopSlides.forEach(slide => {
+                slide.style.minWidth = `calc(${slideWidth}% - ${(desktopSlidesToShow - 1) * 10}px)`;
+            });
+            updateDesktopCarousel(true);
+            updateDesktopDots();
+        }
+
+        function updateDesktopCarousel(smooth = true) {
+            if (!smooth) { desktopTrack.style.transition = 'none'; } 
+            else { desktopTrack.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; }
+
+            const maxIndex = desktopTotalSlides - desktopSlidesToShow;
+            if (desktopCurrentIndex > maxIndex) desktopCurrentIndex = maxIndex;
+            if (desktopCurrentIndex < 0) desktopCurrentIndex = 0;
+
+            const slideWidth = 100 / desktopSlidesToShow;
+            const gap = 20 * (desktopSlidesToShow - 1) / desktopSlidesToShow;
+            const offset = -(desktopCurrentIndex * (slideWidth + gap));
+            desktopTrack.style.transform = `translateX(${offset}%)`;
+
+            if (!smooth) {
+                requestAnimationFrame(() => {
+                    desktopTrack.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            }
+            updateDesktopDots();
+        }
+
+        function updateDesktopDots() {
+            const maxIndex = desktopTotalSlides - desktopSlidesToShow;
+            const dotCount = maxIndex + 1;
+            desktopDotsContainer.innerHTML = '';
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === desktopCurrentIndex ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => goToDesktopSlide(i));
+                desktopDotsContainer.appendChild(dot);
+            }
+        }
+
+        function goToDesktopSlide(index) {
+            if (desktopIsTransitioning) return;
+            desktopIsTransitioning = true;
+            desktopCurrentIndex = Math.max(0, Math.min(index, desktopTotalSlides - desktopSlidesToShow));
+            updateDesktopCarousel(true);
+            setTimeout(() => { desktopIsTransitioning = false; }, 600);
+        }
+
+        function moveDesktopCarousel(direction) {
+            if (desktopIsTransitioning) return;
+            const maxIndex = desktopTotalSlides - desktopSlidesToShow;
+            let newIndex = desktopCurrentIndex + direction;
+            if (newIndex > maxIndex) newIndex = 0;
+            if (newIndex < 0) newIndex = maxIndex;
+            goToDesktopSlide(newIndex);
+            resetDesktopAutoPlay();
+        }
+
+        function startDesktopAutoPlay() {
+            if (desktopAutoPlayInterval) clearInterval(desktopAutoPlayInterval);
+            desktopAutoPlayInterval = setInterval(() => {
+                const maxIndex = desktopTotalSlides - desktopSlidesToShow;
+                let nextIndex = desktopCurrentIndex + 1;
+                if (nextIndex > maxIndex) nextIndex = 0;
+                goToDesktopSlide(nextIndex);
+            }, 4000);
+        }
+
+        function resetDesktopAutoPlay() {
+            clearInterval(desktopAutoPlayInterval);
+            startDesktopAutoPlay();
+        }
+
+        const desktopCarouselContainer = document.querySelector('#desktopCarouselTrack').parentElement;
+        desktopCarouselContainer.addEventListener('mouseenter', () => clearInterval(desktopAutoPlayInterval));
+        desktopCarouselContainer.addEventListener('mouseleave', startDesktopAutoPlay);
+
+        let desktopResizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(desktopResizeTimeout);
+            desktopResizeTimeout = setTimeout(() => {
+                if (getDesktopSlidesToShow() !== desktopSlidesToShow) updateDesktopSlidesToShow();
+            }, 200);
+        });
+
+        function initDesktopCarousel() {
+            desktopSlidesToShow = getDesktopSlidesToShow();
+            const slideWidth = 100 / desktopSlidesToShow;
+            desktopSlides.forEach(slide => {
+                slide.style.minWidth = `calc(${slideWidth}% - ${(desktopSlidesToShow - 1) * 10}px)`;
+            });
+            updateDesktopCarousel(false);
+            updateDesktopDots();
+            startDesktopAutoPlay();
+        }
+
+        if (document.readyState === 'complete') { initDesktopCarousel(); } 
+        else { window.addEventListener('load', initDesktopCarousel); }
+    </script>
+</body>
+</html>
